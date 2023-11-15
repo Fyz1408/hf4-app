@@ -25,7 +25,7 @@ namespace hf4_app.service
 
         private async Task<string> getAsync(string path)
         {
-            HttpResponseMessage response = await client.GetAsync(baseUrl);
+            HttpResponseMessage response = await client.GetAsync(baseUrl + path);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return await response.Content.ReadAsStringAsync();
