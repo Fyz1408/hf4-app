@@ -11,8 +11,12 @@ namespace hf4_app.service
         private string baseUrl = "https://skol.molsen.one/";
         private string token;
 
-        static readonly HttpClient client = new HttpClient();
+        public bool isLogin { get
+            {
+                return !string.IsNullOrEmpty(token);
+            } }
 
+        static readonly HttpClient client = new HttpClient();
 
         private async Task<string> get(string path)
         {
@@ -25,12 +29,14 @@ namespace hf4_app.service
         }
         private async Task<string> post(string path,string data)
         {
-            HttpResponseMessage response = await client.PostAsync(baseUrl + path, new ByteArrayContent(Encoding.ASCII.GetBytes("data")));
+            HttpResponseMessage response = await client.PostAsync(baseUrl + path, new ByteArrayContent(Encoding.ASCII.GetBytes(data)));
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return await response.Content.ReadAsStringAsync();
             }
             return null;
         }
+
+        
     }
 }
