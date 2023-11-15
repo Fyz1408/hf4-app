@@ -47,4 +47,9 @@ namespace hf4_app.Models
         public DateTime createdAt { get; set; }
 
     }
+    class UserLogin
+    {
+        public string userName {  get; set; }
+        public string password { get; set; }
+    }
 }
