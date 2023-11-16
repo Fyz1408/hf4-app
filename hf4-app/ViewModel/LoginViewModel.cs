@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hf4_app.service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,15 @@ namespace hf4_app.ViewModel
 {
     public partial class LoginViewModel : ObservableObject
     {
-        // Properties
+        webHandler api = new webHandler();
+
+        private string clicked = "";
+        public string Clicked
+        {
+            get { return clicked; }
+            set { SetProperty(ref clicked, value); }
+        }
+
         private string username;
         public string Username
         {
@@ -26,13 +35,15 @@ namespace hf4_app.ViewModel
         }
 
         //Tjek login
-        //[RelayCommand]
-        private void Login()
+        [RelayCommand]
+        private async Task Login()
         {
             try
             {
-                //APIkald for at få bool for "isLoggedin"
-                bool isLoginSuccessful = true;//await ApiService.LoginAsync(Username, Password);
+                //APIkald
+                bool isLoginSuccessful = await api.login(Username, Password);
+
+                //Tjek login
                 if (isLoginSuccessful)
                 {
                     //Naviger til FrontPage
@@ -44,7 +55,7 @@ namespace hf4_app.ViewModel
             }
             catch (Exception ex)
             {
-                //Popup med tekst: "Error: " + ex.Message;
+                Clicked += "Error: " + ex.Message;
             }
         }
     }
