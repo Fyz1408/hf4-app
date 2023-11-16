@@ -1,4 +1,5 @@
 ﻿using Camera.MAUI;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace hf4_app;
@@ -10,6 +11,7 @@ public static class MauiProgram
     var builder = MauiApp.CreateBuilder();
     builder
       .UseMauiApp<App>()
+      .UseMauiCommunityToolkit()
       .UseMauiCameraView()
       .ConfigureFonts(fonts =>
       {
