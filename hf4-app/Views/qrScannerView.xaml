@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="hf4_app.Views.qrScannerView">
-    
-</ContentView>
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             x:Class="hf4_app.Views.QrScannerView">
+    <ContentPage.BindingContext>
+        <viewModels:QrScannerViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- <BoxView x:Name="CameraPlaceholder" VerticalOptions="FillAndExpand" HeightRequest="400"
+                     BackgroundColor="#479fd1" /> -->
+            <cv:CameraView x:Name="cameraView" VerticalOptions="FillAndExpand" HeightRequest="400"
+                           BarCodeOptions="{Binding BarCodeOptions}"
+                           BarCodeResults="{Binding BarCodeResults}"
+                           Cameras="{Binding Cameras}"
+                           Camera="{Binding Camera}"
+                           AutoStartPreview="{Binding AutoStartPreview}"
+                           NumCamerasDetected="{Binding NumCameras, Mode=OneWayToSource}" />
+            
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="1">
+                <HorizontalStackLayout>
+                    <Label Text="Mirrored" VerticalOptions="Center" TextColor="Black" />
+                    <CheckBox BindingContext="{x:Reference cameraView}" VerticalOptions="Center" Color="Black"
+                              IsChecked="{Binding MirroredImage}" />
+                    <Label Text="Flashlight" VerticalOptions="Center" TextColor="Black" />
+                    <CheckBox BindingContext="{x:Reference cameraView}" VerticalOptions="Center" Color="Black"
+                              IsChecked="{Binding TorchEnabled}" />
+                    <Label Text="QR" VerticalOptions="Center" TextColor="Black" />
+                    <CheckBox BindingContext="{x:Reference cameraView}" VerticalOptions="Center" Color="Black"
+                              IsChecked="{Binding BarCodeDetectionEnabled}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1">
+                    <VerticalStackLayout HorizontalOptions="Center" Margin="5">
+                        <Label Text="{Binding Camera, StringFormat='Camera in use: {0}'}"
+                               VerticalOptions="Center" BackgroundColor="White" TextColor="Black" />
+                        <Label Text="Change camera" VerticalOptions="Center" BackgroundColor="White" TextColor="Black" />
+                        <Picker VerticalOptions="Center" TextColor="Black" ItemsSource="{Binding Cameras}"
+                                SelectedItem="{Binding Camera,Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <Label Text="{Binding BarcodeText}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
