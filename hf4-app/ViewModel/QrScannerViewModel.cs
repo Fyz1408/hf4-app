@@ -1,15 +1,14 @@
 using System.Collections.ObjectModel;
 using Camera.MAUI;
 using Camera.MAUI.ZXingHelper;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hf4_app.Views;
 using ZXing;
-using CommunityToolkit.Maui.Views;
-using Command = Microsoft.Maui.Controls.Command;
-
 
 namespace hf4_app.ViewModel;
 
-public partial class QrScannerViewModel : BaseViewModel
+public partial class QrScannerViewModel : ObservableObject
 {
     public Command StartCamera { get; set; }
     public Command StopCamera { get; set; }
@@ -103,6 +102,12 @@ public partial class QrScannerViewModel : BaseViewModel
         {
             AutoStartPreview = true;
         });
+    }
+
+    [RelayCommand]
+    private async Task PackageDetail(string package)
+    {
+        await Shell.Current.GoToAsync($"{nameof(PackageView)}?Package={package}");
     }
     
 }
