@@ -2,8 +2,74 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="hf4_app.Views.PackageView">
+             xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
+             x:Class="hf4_app.Views.PackageView"
+             Title="{Binding Package, StringFormat='Package ID: {0}'}">
+    <ContentPage.BindingContext>
+        <viewModels:PackageViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <BoxView
+                Grid.ColumnSpan="2"
+                Color="LightPink" />
+            <Label
+                Grid.ColumnSpan="2"
+                Text="{Binding Package, StringFormat='Package ID: {0}'}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+            />
+            
+            <BoxView
+                Grid.Row="1"
+                Color="LightGreen" />
+            <Label
+                Grid.Row="1"
+                Text="Row 1, Column 0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="1"
+                Color="LightBlue" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="Row 0, Column 1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            
+            <BoxView
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Color="LightYellow" />
+            <Label
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Text="Row 1, ColumnSpan 2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+            />
+            
+            
+            <Button
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Command="{Binding GoBackCommand}"
+                Margin="20"
+                Text="Go back"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
