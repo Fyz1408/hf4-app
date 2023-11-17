@@ -12,91 +12,72 @@
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <HorizontalStackLayout HorizontalOptions="Start" Grid.Row="0" Margin="7">
-                <Label
-                    FontAttributes="Bold"                    
-                    Text="{Binding Camera, StringFormat='Camera in use: {0}'}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Start"
-                    TextColor="Black" />
-                
-            </HorizontalStackLayout>
+            
+            <BoxView
+                Grid.Row="1"
+                HeightRequest="1"
+                VerticalOptions="Start"
+                Color="Black" />
 
-
-            <Frame BackgroundColor="LightBlue" CornerRadius="15" Margin="5" Grid.Row="1">
+            <Frame BackgroundColor="LightBlue" Grid.Row="0">
                 <cv:CameraView
                     x:Name="cameraView"
-                    HeightRequest="350"
+                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
                     BarCodeOptions="{Binding BarCodeOptions}"
                     BarCodeResults="{Binding BarCodeResults}"
                     Cameras="{Binding Cameras}"
                     Camera="{Binding Camera}"
                     AutoStartPreview="{Binding AutoStartPreview}"
+                    MirroredImage="True"
+                    BarCodeDetectionEnabled="True"
                     NumCamerasDetected="{Binding NumCameras, Mode=OneWayToSource}" />
             </Frame>
 
-            <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="2">
-                <HorizontalStackLayout HorizontalOptions="Center">
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
                     <Label
-                        Text="Mirrored"
+                        Grid.ColumnSpan="2"
+                        FontAttributes="Bold"
+                        Text="{Binding Camera, StringFormat='Kamera i brug: {0}'}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Margin="15"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="2"
+                        Text="Lys"
                         VerticalOptions="Center"
                         TextColor="Black" />
-                    <CheckBox
+                    <Switch
+                        Margin="30,0,0,0"
+                        Grid.Column="2"
                         BindingContext="{x:Reference cameraView}"
                         VerticalOptions="Center"
-                        Color="Black"
-                        IsChecked="{Binding MirroredImage}" />
-                    <Label
-                        Text="Flashlight"
-                        VerticalOptions="Center"
-                        TextColor="Black" />
-                    <CheckBox
-                        BindingContext="{x:Reference cameraView}"
-                        VerticalOptions="Center"
-                        Color="Black"
-                        IsChecked="{Binding TorchEnabled}" />
-                    <Label
-                        Text="QR"
-                        VerticalOptions="Center"
-                        TextColor="Black" />
-                    <CheckBox
-                        BindingContext="{x:Reference cameraView}"
-                        VerticalOptions="Center" Color="Black"
-                        IsChecked="{Binding BarCodeDetectionEnabled}" />
-                </HorizontalStackLayout>
+                        IsToggled="{Binding TorchEnabled}" />
+                </Grid>
             </VerticalStackLayout>
             
-            <BoxView
-                Grid.Row="3"
-                Color="LightGray"
-                VerticalOptions="Fill"
-                HorizontalOptions="Fill"
-                Margin="20"
-            />
-            <Frame 
-                Grid.Row="3" 
-                BackgroundColor="LightGray" 
-                VerticalOptions="Fill"
-                HorizontalOptions="Fill"
-                Margin="15">
-            </Frame>
-
             <Button
-                Grid.Row="4"
+                Grid.Row="3"
                 Text="{Binding BarcodeText}"
                 Command="{Binding PackageDetailCommand}"
-                CommandParameter="100"
+                CommandParameter="{Binding BarcodeText}"
                 MaximumWidthRequest="350" />
         </Grid>
     </ScrollView>
