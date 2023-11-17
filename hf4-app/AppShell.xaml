@@ -6,23 +6,25 @@
     xmlns:views="clr-namespace:hf4_app.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Login"
-        ContentTemplate="{DataTemplate views:Login}"
-        Route="Login" />
 
-    <TabBar>
-        <Tab Title="Something">
-        <ShellContent
-        Title="Hjem"
-        ContentTemplate="{DataTemplate views:FrontPage}"
-        Route="FrontPage" />
+    <TabBar >
+        <Tab>
+            <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate views:Login}"
+            Route="Login" />
         </Tab>
-        <Tab Title="Something else">
-        <ShellContent
-        Title="QR-scanner"
-        ContentTemplate="{DataTemplate views:qrScannerView}"
-        Route="qrScannerView" />
+        <Tab Title="Hjem" Icon="home.png">
+            <ShellContent
+            Title="Hjem"
+            ContentTemplate="{DataTemplate views:FrontPage}"
+            Route="FrontPage" />
+        </Tab>
+        <Tab Title="QR-scanner" Icon="qr.png">
+            <ShellContent
+            Title="QR-scanner"
+            ContentTemplate="{DataTemplate views:qrScannerView}"
+            Route="qrScannerView" />
         </Tab>
     </TabBar>
 
