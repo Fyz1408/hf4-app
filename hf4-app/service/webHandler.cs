@@ -64,7 +64,7 @@ namespace hf4_app.service
 
         public async Task<bool> postAsyncWarehouse(Warehouse data)
         {
-            string svare = await postAsync("/api/warehouse", data);
+            string svare = await postAsync(string.Format("/api/warehouse/?token={0}",token), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -73,14 +73,14 @@ namespace hf4_app.service
         }
         public async Task<Warehouse> getAsyncWarehouse(int id)
         {
-            string json = await getAsync("/api/warehouse/" + id.ToString());
+            string json = await getAsync(string.Format("/api/warehouse/?token={0}&id={1}",token,id.ToString()));
             return JsonSerializer.Deserialize<Warehouse>(json);
         }
 
 
         public async Task<bool> postAsyncCustomer(Customer data)
         {
-            string svare = await postAsync("/api/customer", data);
+            string svare = await postAsync(string.Format("/api/customer?token={0}",token), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -89,13 +89,13 @@ namespace hf4_app.service
         }
         public async Task<Customer> getAsyncCustomer(int id)
         {
-            string json = await getAsync("/api/customer/" + id.ToString());
+            string json = await getAsync(string.Format("/api/customer/?token={0}&id={1}", token, id.ToString()));
             return JsonSerializer.Deserialize<Customer>(json);
         }
 
         public async Task<bool> postAsyncPackageEvent(PackageEvents data)
         {
-            string svare = await postAsync("/api/packageevent", data);
+            string svare = await postAsync(string.Format("/api/packageevent/?token={0}",token), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -104,14 +104,14 @@ namespace hf4_app.service
         }
         public async Task<PackageEvents> getAsyncPackageEvent(int id)
         {
-            string json = await getAsync("/api/packageevent/" + id.ToString());
+            string json = await getAsync(string.Format("/api/packageevent/?token={0}&id={1}", token, id.ToString()));
             return JsonSerializer.Deserialize<PackageEvents>(json);
         }
 
 
         public async Task<bool> postAsyncPackage(Package data)
         {
-            string svare = await postAsync("/api/package", data);
+            string svare = await postAsync(string.Format("/api/package/?token={0}",token), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -120,7 +120,7 @@ namespace hf4_app.service
         }
         public async Task<Package> getAsyncPackage(int id)
         {
-            string json = await getAsync("/api/package/" + id.ToString());
+            string json = await getAsync(string.Format("/api/package/?token={0}&id={1}", token, id.ToString()));
             return JsonSerializer.Deserialize<Package>(json);
         }
     }
