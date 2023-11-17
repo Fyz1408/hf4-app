@@ -34,6 +34,12 @@ namespace hf4_app.ViewModel
             get => password;
             set => SetProperty(ref password, value);
         }
+        private bool visibleTabbar = false;
+        public bool VisibleTabbar
+        {
+            get => visibleTabbar;
+            set => SetProperty(ref visibleTabbar, value);
+        }
 
         //Tjek login
         [RelayCommand]
@@ -46,19 +52,19 @@ namespace hf4_app.ViewModel
                 //Tjek login
                 if (isLoginSuccessful)
                 {
-                    Test += " Sucess";
+                    await Shell.Current.DisplayAlert("Test", "test den viser alert", "OK");
                     //Naviger til FrontPage
                     Application.Current.MainPage = new AppShell();
                 }
                 else
                 {
                     //"Brugernavn eller kodeord forkert"
-                    Test += "Failed";
+                    await Shell.Current.DisplayAlert("Fejl", "Brugernavn eller adgangskode forkert", "OK");
                 }
             }
             catch (Exception ex)
             {
-                Test += " Error: " + ex.Message;
+                await Shell.Current.DisplayAlert("Fejl", ex.Message, "OK");
             }
         }
     }

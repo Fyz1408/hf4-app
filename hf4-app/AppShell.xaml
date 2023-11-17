@@ -6,21 +6,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:hf4_app.Views"
     Shell.FlyoutBehavior="Disabled">
-
-    <TabBar>
-        <Tab Title="Hjem">
+  
+    <TabBar >
+        <Tab Title="Hjem" Icon="home.png">
             <ShellContent
-                Title="Hjem"
-                ContentTemplate="{DataTemplate views:FrontPage}"
-                Route="FrontPage"
-                Icon="logo.png" />
+            Title="Hjem"
+            ContentTemplate="{DataTemplate views:FrontPage}"
+            Route="FrontPage" />
         </Tab>
-        <Tab Title="QR Scanner">
+        <Tab Title="QR-scanner" Icon="qr.png">
             <ShellContent
-                Title="QR-scanner"
-                ContentTemplate="{DataTemplate views:QrScannerView}"
-                Route="qrScannerView"
-                Icon="logo.png" />
+            Title="QR-scanner"
+            ContentTemplate="{DataTemplate views:QrScannerView}"
+            Route="qrScannerView" />
         </Tab>
     </TabBar>
 </Shell>
