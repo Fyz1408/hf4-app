@@ -3,13 +3,29 @@
     x:Class="hf4_app.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:hf4_app"
+    xmlns:views="clr-namespace:hf4_app.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Login"
+        ContentTemplate="{DataTemplate views:Login}"
+        Route="Login" />
+
+    <TabBar>
+        <Tab Title="Something">
+        <ShellContent
+        Title="Hjem"
+        ContentTemplate="{DataTemplate views:FrontPage}"
+        Route="FrontPage" />
+        </Tab>
+        <Tab Title="Something else">
+        <ShellContent
+        Title="QR-scanner"
+        ContentTemplate="{DataTemplate views:qrScannerView}"
+        Route="qrScannerView" />
+        </Tab>
+    </TabBar>
+
 
 </Shell>
 
