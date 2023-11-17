@@ -48,7 +48,7 @@ namespace hf4_app.ViewModel
                 {
                     Test += " Sucess";
                     //Naviger til FrontPage
-                    await Shell.Current.GoToAsync(nameof(FrontPage));
+                    Application.Current.MainPage = new AppShell();
                 }
                 else
                 {

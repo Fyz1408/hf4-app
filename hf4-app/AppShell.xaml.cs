@@ -9,6 +9,7 @@ public partial class AppShell : Shell
     InitializeComponent();
     Routing.RegisterRoute(nameof(PackageView), typeof(PackageView));
     Routing.RegisterRoute(nameof(FrontPage), typeof(FrontPage));
+    Routing.RegisterRoute(nameof(Login), typeof(Login));
     Routing.RegisterRoute(nameof(QrScannerView), typeof(QrScannerView));
   }    
 }

@@ -23,6 +23,12 @@ public static class MauiProgram
     
     builder.Services.AddSingleton<QrScannerView>();
     builder.Services.AddSingleton<QrScannerViewModel>();
+      
+    builder.Services.AddSingleton<FrontPage>();
+    builder.Services.AddSingleton<FrontPageViewModel>();
+    
+    builder.Services.AddSingleton<Login>();
+    builder.Services.AddSingleton<LoginViewModel>();
     
     builder.Services.AddTransient<PackageView>();
     builder.Services.AddTransient<PackageViewModel>();
