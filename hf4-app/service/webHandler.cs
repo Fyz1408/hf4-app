@@ -51,8 +51,8 @@ namespace hf4_app.service
         public async Task<bool> login(string userName,string password)
         {
             UserLogin Login = new UserLogin();
-            Login.userName = userName;
-            Login.password = password;
+            Login.UserName = userName;
+            Login.Password = password;
             string svare = await postAsync("/api/token", Login);
             if (!string.IsNullOrEmpty(svare))
             {

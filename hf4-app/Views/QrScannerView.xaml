@@ -5,7 +5,8 @@
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
              xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
-             x:Class="hf4_app.Views.QrScannerView">
+             x:Class="hf4_app.Views.QrScannerView"
+             Title="QR Scanner">
     <ContentPage.BindingContext>
         <viewModels:QrScannerViewModel />
     </ContentPage.BindingContext>

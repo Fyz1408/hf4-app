@@ -25,7 +25,7 @@ namespace hf4_app.ViewModel
             {
                 Test += " Should navigate";
                 //Naviger til QR-scanner
-                await Shell.Current.GoToAsync(nameof(qrScannerView));
+                await Shell.Current.GoToAsync(nameof(QrScannerView));
             }
             catch (Exception ex)
             {

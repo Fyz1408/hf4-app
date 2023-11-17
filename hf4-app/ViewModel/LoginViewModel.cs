@@ -14,7 +14,7 @@ namespace hf4_app.ViewModel
     {
         private readonly webHandler api = new webHandler();
 
-        private string test = "Test";
+        private string test = "PostNord Login";
         public string Test
         {
             get { return test; }

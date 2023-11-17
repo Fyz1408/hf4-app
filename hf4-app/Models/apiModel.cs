@@ -13,9 +13,9 @@ namespace hf4_app.Models
 
     class Warehouse
     {
-        private int Id;
-        private string Name;
-        private string Location;
+        private int id;
+        private string name;
+        private string location;
 
         public int Id { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
@@ -23,7 +23,6 @@ namespace hf4_app.Models
     }
     class Customer
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
