@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="hf4_app.Views.qrScannerView">
-    
-</ContentView>
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             x:Class="hf4_app.Views.QrScannerView">
+    <ContentPage.BindingContext>
+        <viewModels:QrScannerViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <BoxView
+                Grid.Row="1"
+                HeightRequest="1"
+                VerticalOptions="Start"
+                Color="Black" />
+
+            <Frame BackgroundColor="LightBlue" Grid.Row="0">
+                <cv:CameraView
+                    x:Name="cameraView"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BarCodeOptions="{Binding BarCodeOptions}"
+                    BarCodeResults="{Binding BarCodeResults}"
+                    Cameras="{Binding Cameras}"
+                    Camera="{Binding Camera}"
+                    AutoStartPreview="{Binding AutoStartPreview}"
+                    MirroredImage="True"
+                    BarCodeDetectionEnabled="True"
+                    NumCamerasDetected="{Binding NumCameras, Mode=OneWayToSource}" />
+            </Frame>
+
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.ColumnSpan="2"
+                        FontAttributes="Bold"
+                        Text="{Binding Camera, StringFormat='Kamera i brug: {0}'}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Margin="15"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="2"
+                        Text="Lys"
+                        VerticalOptions="Center"
+                        TextColor="Black" />
+                    <Switch
+                        Margin="30,0,0,0"
+                        Grid.Column="2"
+                        BindingContext="{x:Reference cameraView}"
+                        VerticalOptions="Center"
+                        IsToggled="{Binding TorchEnabled}" />
+                </Grid>
+            </VerticalStackLayout>
+            
+            <Button
+                Grid.Row="3"
+                Text="{Binding BarcodeText}"
+                Command="{Binding PackageDetailCommand}"
+                CommandParameter="{Binding BarcodeText}"
+                MaximumWidthRequest="350" />
+        </Grid>
+    </ScrollView>
+</ContentPage>
