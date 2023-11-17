@@ -1,4 +1,6 @@
-﻿namespace hf4_app;
+﻿using hf4_app.Views;
+
+namespace hf4_app;
 
 public partial class App : Application
 {
@@ -6,7 +8,7 @@ public partial class App : Application
   {
     InitializeComponent();
 
-    MainPage = new AppShell();
+    MainPage = new Login();
   }
 }
 
