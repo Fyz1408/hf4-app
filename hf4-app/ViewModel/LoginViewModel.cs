@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using hf4_app.service;
+using hf4_app.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace hf4_app.ViewModel
 {
     public partial class LoginViewModel : ObservableObject
     {
-        webHandler api = new webHandler();
+        private readonly webHandler api = new webHandler();
 
-        private string clicked = "";
-        public string Clicked
+        private string test = "Test";
+        public string Test
         {
-            get { return clicked; }
-            set { SetProperty(ref clicked, value); }
+            get { return test; }
+            set { SetProperty(ref test, value); }
         }
 
         private string username;
@@ -42,20 +43,22 @@ namespace hf4_app.ViewModel
             {
                 //APIkald
                 bool isLoginSuccessful = await api.login(Username, Password);
-
                 //Tjek login
                 if (isLoginSuccessful)
                 {
+                    Test += " Sucess";
                     //Naviger til FrontPage
+                    await Shell.Current.GoToAsync(nameof(FrontPage));
                 }
                 else
                 {
                     //"Brugernavn eller kodeord forkert"
+                    Test += "Failed";
                 }
             }
             catch (Exception ex)
             {
-                Clicked += "Error: " + ex.Message;
+                Test += " Error: " + ex.Message;
             }
         }
     }

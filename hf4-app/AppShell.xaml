@@ -7,9 +7,25 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
+        Title="Login"
         ContentTemplate="{DataTemplate views:Login}"
         Route="Login" />
+
+    <TabBar>
+        <Tab Title="Something">
+        <ShellContent
+        Title="Hjem"
+        ContentTemplate="{DataTemplate views:FrontPage}"
+        Route="FrontPage" />
+        </Tab>
+        <Tab Title="Something else">
+        <ShellContent
+        Title="QR-scanner"
+        ContentTemplate="{DataTemplate views:qrScannerView}"
+        Route="qrScannerView" />
+        </Tab>
+    </TabBar>
+
 
 </Shell>
 
