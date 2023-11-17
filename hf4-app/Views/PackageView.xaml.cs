@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace hf4_app.Views;
 
-public partial class qrScannerView : ContentView
+public partial class PackageView : ContentPage
 {
-  public qrScannerView()
+  public PackageView()
   {
     InitializeComponent();
   }

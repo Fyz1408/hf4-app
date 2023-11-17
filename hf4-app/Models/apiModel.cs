@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace hf4_app.Models
 {
-    class apiModel
-    {
-
-    }
 
     class Warehouse
     {
@@ -23,7 +19,6 @@ namespace hf4_app.Models
     }
     class Customer
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -40,16 +35,16 @@ namespace hf4_app.Models
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public string senderAddress { get; set; }
-        public string destinationAddress { get; set; }
-        public bool isDelivered { get; set; }
-        public bool isFinished { get; set; }
-        public DateTime createdAt { get; set; }
+        public string SenderAddress { get; set; }
+        public string DestinationAddress { get; set; }
+        public bool IsDelivered { get; set; }
+        public bool IsFinished { get; set; }
+        public DateTime CreatedAt { get; set; }
 
     }
     class UserLogin
     {
-        public string userName {  get; set; }
-        public string password { get; set; }
+        public string UserName {  get; set; }
+        public string Password { get; set; }
     }
 }

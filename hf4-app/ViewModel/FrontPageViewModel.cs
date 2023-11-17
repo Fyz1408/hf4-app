@@ -1,11 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using hf4_app.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace hf4_app.ViewModel
 {
@@ -25,7 +20,7 @@ namespace hf4_app.ViewModel
             {
                 Test += " Should navigate";
                 //Naviger til QR-scanner
-                await Shell.Current.GoToAsync(nameof(qrScannerView));
+                await Shell.Current.GoToAsync(nameof(QrScannerView));
             }
             catch (Exception ex)
             {

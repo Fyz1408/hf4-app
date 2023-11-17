@@ -16,7 +16,7 @@
             Grid.Row="0"
             Source="logo.png"
             VerticalOptions="Center"
-            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+            SemanticProperties.Description="PostNord firma logo"
             HeightRequest="180"
             HorizontalOptions="Center" />
 
