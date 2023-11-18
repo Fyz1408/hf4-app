@@ -48,7 +48,7 @@ namespace hf4_app.ViewModel
             try
             {
                 //APIkald
-                bool isLoginSuccessful = await api.login(Username, Password);
+                bool isLoginSuccessful = await api.loginAsync(Username, Password);
                 //Tjek login
                 if (isLoginSuccessful)
                 {
