@@ -14,11 +14,11 @@ namespace hf4_app.ViewModel
     {
         private readonly webHandler api = new webHandler();
 
-        private string test = "Postnord Login";
-        public string Test
+        private string error = "";
+        public string Error
         {
-            get { return test; }
-            set { SetProperty(ref test, value); }
+            get { return error; }
+            set { SetProperty(ref error, value); }
         }
 
         private string username;
@@ -53,22 +53,17 @@ namespace hf4_app.ViewModel
                 //Tjek login
                 if (isLoginSuccessful)
                 {
-                    Test += isLoginSuccessful;
-                    //await Shell.Current.DisplayAlert("Test", "test den viser alert", "OK");
                     //Naviger til FrontPage
                     Application.Current.MainPage = new AppShell();
                 }
                 else
                 {
-                    Test += isLoginSuccessful;
-                    //"Brugernavn eller kodeord forkert"
-                    //await Shell.Current.DisplayAlert("Fejl", "Brugernavn eller adgangskode forkert", "OK");
+                    Error = "Brugernavn eller adgangskode forkert";
                 }
             }
             catch (Exception ex)
             {
-                Test += ex.Message;
-                //await Shell.Current.DisplayAlert("Fejl", ex.Message, "OK");
+                Error = "Hov noget gik galt - Prøv igen senere "+ex.Message;
             }
         }
     }

@@ -10,19 +10,20 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Image
             Grid.Row="0"
             Source="logo.png"
             VerticalOptions="Center"
-            SemanticProperties.Description="Postnord firma logo"
-            HeightRequest="180"
+            SemanticProperties.Description="PostNord firma logo"
+            HeightRequest="175"
             HorizontalOptions="Center" />
 
         <Label
             Grid.Row="1"
-            Text="{Binding Test}"
+            Text="Log ind"
             FontSize="24"
             VerticalOptions="Center"
             HorizontalOptions="Center"
@@ -50,6 +51,11 @@
             BackgroundColor="White"
             TextColor="Black"
             Grid.Row="3" />
+        <Label
+            Grid.Row="4"
+            Text="{Binding Error}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
 
         <Button
             Text="Login"
@@ -58,7 +64,7 @@
             Margin="20"
             BackgroundColor="White"
             TextColor="#479FD1"
-            Grid.Row="4" 
+            Grid.Row="5" 
             Command="{Binding LoginCommand}"/>
     </Grid>
 </ContentPage>
