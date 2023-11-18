@@ -13,7 +13,7 @@ namespace hf4_app.service
         private string baseUrl = "https://skol.molsen.one";
         private string token;
 
-        public bool isLogin
+        public bool isLogin//tjekker om der er en token siden der kun er en token når man er logget ind
         {
             get
             {
@@ -23,7 +23,7 @@ namespace hf4_app.service
 
         static readonly HttpClient client = new HttpClient();
 
-        private async Task<string> getAsync(string path)
+        private async Task<string> getAsync(string path)//laver en GET requst til api server med diget path og tjekker om den fåre status code 200(ok) tilbager
         {
             HttpResponseMessage response = await client.GetAsync(baseUrl + path);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -32,7 +32,7 @@ namespace hf4_app.service
             }
             return null;
         }
-        private async Task<string> postAsync(string path, object data)
+        private async Task<string> postAsync(string path, object data)//laver en POST requst til api server med diget path hvor den enbeder objet som JSON og tjekker om den fåre status code 200(ok) tilbager
         {
             HttpResponseMessage response = await client.PostAsync(baseUrl + path, new ByteArrayContent(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(data))));
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -48,7 +48,7 @@ namespace hf4_app.service
             return null;
         }
 
-        public async Task<bool> login(string userName,string password)
+        public async Task<bool> loginAsync(string userName,string password)
         {
             UserLogin Login = new UserLogin();
             Login.UserName = userName;

@@ -45,7 +45,6 @@ namespace hf4_app.ViewModel
         [RelayCommand]
         private async Task Login()
         {
-
             try
             {
                 //APIkald
