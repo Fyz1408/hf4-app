@@ -2,12 +2,8 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
              x:Class="hf4_app.Views.PackageView"
-             Title="{Binding Package, StringFormat='Pakke ID: {0}'}">
-    <ContentPage.BindingContext>
-        <viewModels:PackageViewModel />
-    </ContentPage.BindingContext>
+             Title="{Binding PackageId, StringFormat='Pakke ID: {0}'}">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -37,32 +33,28 @@
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding Package, StringFormat='Pakke ID: {0}'}" />
+                        Text="{Binding PackageId, StringFormat='Pakke ID: {0}'}" />
                 </Border>
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding Package, StringFormat='Afsender adr: Munkebjergvej 130 5000 Odense'}" />
+                        Text="{Binding SenderAddress, StringFormat='Afsender adr: {0}'}" />
                 </Border>
                 <Border>
                     <Label
 
                         Margin="3"
-                        Text="{Binding Package, StringFormat='Modtager adr: Munkebjergvej 130 5000 Odense'}" />
+                        Text="{Binding DestinationAddress, StringFormat='Modtager adr: {0}'}" />
                 </Border>
-                <Border
-                    BackgroundColor="LightCoral">
+                <Border>
                     <Label
                         Margin="3"
-                        BackgroundColor="LightCoral"
-                        Text="{Binding Package, StringFormat='Leveret: Pakken blev ikke hentet'}" />
+                        Text="{Binding PackageDelivered, StringFormat='Leveret: {0}'}" />
                 </Border>
-                <Border
-                    BackgroundColor="LightGreen">
+                <Border>
                     <Label
                         Margin="3"
-                        BackgroundColor="LightGreen"
-                        Text="{Binding Package, StringFormat='Pakke afsluttet: Ja'}" />
+                        Text="{Binding PackageFinished, StringFormat='Pakke afsluttet: {0}'}" />
                 </Border>
             </VerticalStackLayout>
 

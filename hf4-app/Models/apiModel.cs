@@ -1,8 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿public class Package
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public string SenderAddress { get; set; }
+    public string DestinationAddress { get; set; }
+    public bool IsDelivered { get; set; }
+    public bool IsFinished { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+}
 
 namespace hf4_app.Models
 {
@@ -31,17 +37,7 @@ namespace hf4_app.Models
         public int WarehouseId { get; set; }
         public DateTime TimeStamp { get; set; }
     }
-    class Package
-    {
-        public int Id { get; set; }
-        public int CustomerId { get; set; }
-        public string SenderAddress { get; set; }
-        public string DestinationAddress { get; set; }
-        public bool IsDelivered { get; set; }
-        public bool IsFinished { get; set; }
-        public DateTime CreatedAt { get; set; }
 
-    }
     class UserLogin
     {
         public string UserName {  get; set; }

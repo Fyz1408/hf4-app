@@ -47,24 +47,23 @@ namespace hf4_app.ViewModel
         {
             try
             {
+                
                 //APIkald
                 bool isLoginSuccessful = await api.login(Username, Password);
                 //Tjek login
                 if (isLoginSuccessful)
                 {
-                    await Shell.Current.DisplayAlert("Test", "test den viser alert", "OK");
                     //Naviger til FrontPage
                     Application.Current.MainPage = new AppShell();
                 }
                 else
                 {
                     //"Brugernavn eller kodeord forkert"
-                    await Shell.Current.DisplayAlert("Fejl", "Brugernavn eller adgangskode forkert", "OK");
                 }
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Fejl", ex.Message, "OK");
+                // Exception 
             }
         }
     }
