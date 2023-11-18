@@ -14,7 +14,7 @@ namespace hf4_app.ViewModel
     {
         private readonly webHandler api = new webHandler();
 
-        private string test = "PostNord Login";
+        private string test = "Postnord Login";
         public string Test
         {
             get { return test; }
@@ -45,26 +45,31 @@ namespace hf4_app.ViewModel
         [RelayCommand]
         private async Task Login()
         {
+
             try
             {
                 //APIkald
                 bool isLoginSuccessful = await api.login(Username, Password);
+                Test += isLoginSuccessful;
                 //Tjek login
                 if (isLoginSuccessful)
                 {
-                    await Shell.Current.DisplayAlert("Test", "test den viser alert", "OK");
+                    Test += isLoginSuccessful;
+                    //await Shell.Current.DisplayAlert("Test", "test den viser alert", "OK");
                     //Naviger til FrontPage
                     Application.Current.MainPage = new AppShell();
                 }
                 else
                 {
+                    Test += isLoginSuccessful;
                     //"Brugernavn eller kodeord forkert"
-                    await Shell.Current.DisplayAlert("Fejl", "Brugernavn eller adgangskode forkert", "OK");
+                    //await Shell.Current.DisplayAlert("Fejl", "Brugernavn eller adgangskode forkert", "OK");
                 }
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Fejl", ex.Message, "OK");
+                Test += ex.Message;
+                //await Shell.Current.DisplayAlert("Fejl", ex.Message, "OK");
             }
         }
     }

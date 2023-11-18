@@ -16,7 +16,7 @@
             Grid.Row="0"
             Source="logo.png"
             VerticalOptions="Center"
-            SemanticProperties.Description="PostNord firma logo"
+            SemanticProperties.Description="Postnord firma logo"
             HeightRequest="180"
             HorizontalOptions="Center" />
 
