@@ -29,6 +29,9 @@ namespace hf4_app.service
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return await response.Content.ReadAsStringAsync();
+            }else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                token = null;
             }
             return null;
         }
@@ -44,6 +47,9 @@ namespace hf4_app.service
                 }
                 return retuneData;
                 
+            }else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                token = null;
             }
             return null;
         }
