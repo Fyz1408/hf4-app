@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="hf4_app.Views.Login"
@@ -13,8 +14,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0"/>
-        
+        <Label Grid.Row="0" />
+
         <Image
             Grid.Row="1"
             Source="logo.png"
@@ -31,34 +32,45 @@
             HorizontalOptions="Center"
             FontAttributes="Bold" />
 
-        <Entry
-            x:Name="UsernameEntry"
-            Placeholder="Brugernavn"
-            Text="{Binding Username}"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="Center"
-            Margin="20"
-            BackgroundColor="White"
-            TextColor="Black"
-            Grid.Row="3" />
+        <Border
+            Grid.Row="3"
+            Stroke="gray"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Padding="2,8"
+            HeightRequest="70"
+            MinimumWidthRequest="300"
+            HorizontalOptions="CenterAndExpand">
+            <Entry
+                x:Name="UsernameEntry"
+                Placeholder="Brugernavn"
+                Text="{Binding Username}" />
+        </Border>
 
-        <Entry
-            x:Name="PasswordEntry"
-            Placeholder="Password"
-            IsPassword="True"
-            Text="{Binding Password}"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="Center"
-            Margin="20"
-            BackgroundColor="White"
-            TextColor="Black"
-            Grid.Row="4" />
         <Label
-            Grid.Row="5"
+            Grid.Row="3"
             Text="{Binding Error}"
-            BackgroundColor="red"
+            TextColor="red"
             VerticalOptions="Center"
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            Margin="0,0,0,100"/>
+        
+        <Border
+            Grid.Row="4"
+            Stroke="gray"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Padding="2,8"
+            HeightRequest="70"
+            MinimumWidthRequest="300"
+            Margin="0,0,0,100"
+            HorizontalOptions="CenterAndExpand">
+            <Entry
+                IsPassword="True"
+                x:Name="PasswordEntry"
+                Placeholder="Password"
+                Text="{Binding Password}" />
+        </Border>
 
         <Button
             Text="Log ind"
@@ -67,7 +79,7 @@
             Margin="20"
             BackgroundColor="White"
             TextColor="#479FD1"
-            Grid.Row="6" 
-            Command="{Binding LoginCommand}"/>
+            Grid.Row="6"
+            Command="{Binding LoginCommand}" />
     </Grid>
 </ContentPage>
