@@ -2,8 +2,11 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="hf4_app.Views.PackageView"
-             Title="{Binding PackageId, StringFormat='Pakke ID: {0}'}">
+             Title="{Binding PackageDetails.Id, StringFormat='Pakke ID: {0}'}">
+    <ContentPage.Resources>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,28 +36,28 @@
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding PackageId, StringFormat='Pakke ID: {0}'}" />
+                        Text="{Binding PackageDetails.Id, StringFormat='Pakke ID: {0}'}" />
                 </Border>
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding SenderAddress, StringFormat='Afsender adr: {0}'}" />
+                        Text="{Binding PackageDetails.SenderAddress, StringFormat='Afsender adr: {0}'}" />
                 </Border>
                 <Border>
                     <Label
 
                         Margin="3"
-                        Text="{Binding DestinationAddress, StringFormat='Modtager adr: {0}'}" />
+                        Text="{Binding PackageDetails.DestinationAddress, StringFormat='Modtager adr: {0}'}" />
                 </Border>
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding PackageDelivered, StringFormat='Leveret: {0}'}" />
+                        Text="{Binding PackageDetails.IsDelivered, StringFormat='Leveret: {0}'}" />
                 </Border>
                 <Border>
                     <Label
                         Margin="3"
-                        Text="{Binding PackageFinished, StringFormat='Pakke afsluttet: {0}'}" />
+                        Text="{Binding PackageDetails.IsFinished, StringFormat='Pakke afsluttet: {0}'}" />
                 </Border>
             </VerticalStackLayout>
 
@@ -82,7 +85,7 @@
                     Margin="3"
                     Text="Historik over pakke"
                     HorizontalTextAlignment="Center" />
-                <ListView ItemsSource="{Binding PackageEvents}">
+                <ListView ItemsSource="{Binding PackageEvents}" MaximumHeightRequest="250">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

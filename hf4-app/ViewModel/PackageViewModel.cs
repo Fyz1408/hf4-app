@@ -7,63 +7,44 @@ using hf4_app.service;
 namespace hf4_app.ViewModel;
 
 // For package parameter 
-//[QueryProperty("PackageId", "PackageId")]
 [QueryProperty("PackageDetails", "PackageDetails")]
 public partial class PackageViewModel : ObservableObject
 {
-  [ObservableProperty] private Package packageDetails;
-
-  [ObservableProperty] private int packageId;
-  [ObservableProperty] private string senderAddress = "Ingen afsender adresse";
-  [ObservableProperty] private string destinationAddress = "Ingen modtager adresse";
-  [ObservableProperty] private string packageStatus = "?";
-  [ObservableProperty] private bool packageDelivered;
-  [ObservableProperty] private bool packageFinished;
-
   private readonly webHandler api = new();
+  
+  [ObservableProperty] 
+  private ObservableCollection<PackageEvents> packageEvents = new();
 
-  // Test data is temporary until api is integrated 
-  [ObservableProperty] private ObservableCollection<PackageModel.PackageEvent> packageEvents;
-
-  public PackageViewModel()
+  private Package packageDetails;
+  public Package PackageDetails
   {
-    if (packageDetails != null)
+    get => packageDetails;
+    set
     {
-      packageId = packageDetails.Id;
-      senderAddress = packageDetails.SenderAddress;
-      destinationAddress = packageDetails.DestinationAddress;
-      packageDelivered = packageDetails.IsDelivered;
-      packageFinished = packageDetails.IsFinished;
+      Task.Run(async () => await loadPackageEvents(value.Id));
+      SetProperty(ref packageDetails, value);
     }
   }
+  
+  public PackageViewModel()
+  {
+    Task.Run(async () => await loadPackageEvents(packageDetails.Id));
+  }
 
-  // Returns to QR scanner
+
   [RelayCommand]
   private static async Task GoBack()
   {
     // Return to QR scanner page
     await Shell.Current.GoToAsync("..");
   }
-
-  // Get package from the package ID 
-  /*[RelayCommand]
-  private async Task GetPackageDetails()
+  
+  private async Task loadPackageEvents(int packageId)
   {
-    try
-    {
-      Int32.TryParse(PackageId, out var packageIdInt);
-
-      // Get package details
-      Package packageDetails = await api.getAsyncPackage(packageIdInt);
-
-      packageDetails.SenderAddress = senderAddress;
-      packageDetails.DestinationAddress = destinationAddress;
-
-
-    }
-    catch (Exception ex)
-    {
-      // Exception
-    }
-  }*/
+    
+    //var apiData = await api.getAsyncPackageEvent(packageId);
+    //PackageEvents = new ObservableCollection<PackageEvents>(apiData);
+    
+    //PackageEvents.Add(new PackageEvents(1,packageId,DateTime.Today, 1));
+  }
 }

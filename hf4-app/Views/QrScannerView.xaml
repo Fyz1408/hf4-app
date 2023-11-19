@@ -73,7 +73,7 @@
                 Grid.Row="3"
                 Text="{Binding BarcodeText}"
                 Command="{Binding PackageDetailCommand}"
-                CommandParameter="1"
+                CommandParameter="{Binding BarcodeText}"
                 MaximumWidthRequest="350" />
         </Grid>
     </ScrollView>
