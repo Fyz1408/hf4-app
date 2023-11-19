@@ -29,6 +29,9 @@ namespace hf4_app.service
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return await response.Content.ReadAsStringAsync();
+            }else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                token = null;
             }
             return null;
         }
@@ -44,6 +47,9 @@ namespace hf4_app.service
                 }
                 return retuneData;
                 
+            }else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                token = null;
             }
             return null;
         }
@@ -159,12 +165,13 @@ namespace hf4_app.service
             string json = await getAsync(string.Format("/api/package/?token={0}&id={1}", storedToken, id.ToString()));
             return JsonSerializer.Deserialize<Package>(json);
         }
-        
+      
         public async Task<Warehouse[]> getListAsyncWarehouse()
         {
-            string storedToken = await SecureStorage.Default.GetAsync("token");
+              string storedToken = await SecureStorage.Default.GetAsync("token");
 
             string json = await getAsync(string.Format("/api/allWarehouse/?token={0}", storedToken));
+
             return JsonSerializer.Deserialize<Warehouse[]>(json);
         }
     }
