@@ -123,32 +123,29 @@ public partial class QrScannerViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task PackageDetail(string package)
+    private async Task PackageDetail(string barcodeText)
     {
         try
         {
-            var packageId = GetPackageId(package);
-
-            if (!string.IsNullOrEmpty(packageId))
+            // Get package id from the barcode text and tryParse it to get an int
+            if (Int32.TryParse(GetPackageId(barcodeText), out var id))
             {
-                Int32.TryParse(packageId, out var packageIdInt);
-                
                 // Get package details 
-                Package packageDetails = await api.getAsyncPackage(packageIdInt);
-                
+                Package packageDetails = await api.getAsyncPackage(id);
+            
                 var navigationParameter = new Dictionary<string, object>
                 {
                     { "PackageDetails", packageDetails }
                 };
 
-                // Go to the package view page and parse the package & details along with it
+                // Go to the package view page and parse the package along with it
                 await Shell.Current.GoToAsync($"{nameof(PackageView)}", navigationParameter);
             }
             else
             {
                 // Display error to the user 
                 await Shell.Current.DisplayAlert(
-                    packageId,
+                    "Ugyldig QR kode",
                     "Pakken er ugyldig, prøv venligst at scan QR koden igen",
                     "Ok"
                 );
@@ -156,7 +153,7 @@ public partial class QrScannerViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex.Message);
+            Debug.WriteLine(ex.ToString());
         }
     }
 
