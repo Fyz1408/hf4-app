@@ -134,5 +134,11 @@ namespace hf4_app.service
             string json = await getAsync(string.Format("/api/package/?token={0}&id={1}", token, id.ToString()));
             return JsonSerializer.Deserialize<Package>(json);
         }
+
+        public async Task<Package[]> getListAsyncPackage(int id)
+        {
+            string json = await getAsync(string.Format("/api/allEvents/?token={0}&id={1}", token, id.ToString()));
+            return JsonSerializer.Deserialize<Package[]>(json);
+        }
     }
 }
