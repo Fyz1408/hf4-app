@@ -14,11 +14,11 @@ namespace hf4_app.ViewModel
     {
         private readonly webHandler api = new webHandler();
 
-        private string test = "PostNord Login";
-        public string Test
+        private string error = "";
+        public string Error
         {
-            get { return test; }
-            set { SetProperty(ref test, value); }
+            get { return error; }
+            set { SetProperty(ref error, value); }
         }
 
         private string username;
@@ -49,7 +49,7 @@ namespace hf4_app.ViewModel
             {
                 
                 //APIkald
-                bool isLoginSuccessful = await api.login(Username, Password);
+                bool isLoginSuccessful = await api.loginAsync(Username, Password);
                 //Tjek login
                 if (isLoginSuccessful)
                 {
@@ -58,12 +58,12 @@ namespace hf4_app.ViewModel
                 }
                 else
                 {
-                    //"Brugernavn eller kodeord forkert"
+                    Error = "Brugernavn eller adgangskode forkert";
                 }
             }
             catch (Exception ex)
             {
-                // Exception 
+                Error = "Hov noget gik galt - Prøv igen senere "+ex.Message;
             }
         }
     }
