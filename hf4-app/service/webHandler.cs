@@ -57,6 +57,7 @@ namespace hf4_app.service
         public void logout()
         {
             token = null;
+
             SecureStorage.Default.Remove("token");
         }
 
