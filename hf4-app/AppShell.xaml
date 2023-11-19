@@ -8,13 +8,13 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar >
-        <Tab Title="Hjem" Icon="home.png">
+        <Tab Title="Hjem" >
             <ShellContent
             Title="Hjem"
             ContentTemplate="{DataTemplate views:FrontPage}"
             Route="FrontPage" />
         </Tab>
-        <Tab Title="QR-scanner" Icon="qr.png">
+        <Tab Title="QR-scanner">
             <ShellContent
             Title="QR-scanner"
             ContentTemplate="{DataTemplate views:QrScannerView}"
