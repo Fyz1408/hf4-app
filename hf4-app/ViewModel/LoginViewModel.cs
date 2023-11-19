@@ -21,14 +21,14 @@ namespace hf4_app.ViewModel
             set { SetProperty(ref error, value); }
         }
 
-        private string username;
+        private string username = "";
         public string Username
         {
             get => username;
             set => SetProperty(ref username, value);
         }
 
-        private string password;
+        private string password ="";
         public string Password
         {
             get => password;
@@ -52,6 +52,11 @@ namespace hf4_app.ViewModel
                 //Tjek login
                 if (isLoginSuccessful)
                 {
+                    //Ryd tidligere Error-beskeder
+                    Error = "";
+                    //Rydfelter med brugernavn og password
+                    Username = "";
+                    Password = "";
                     //Naviger til FrontPage
                     Application.Current.MainPage = new AppShell();
                 }

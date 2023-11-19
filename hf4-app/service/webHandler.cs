@@ -48,6 +48,11 @@ namespace hf4_app.service
             return null;
         }
 
+        public void logout()
+        {
+            token = null;
+        }
+
         public async Task<bool> loginAsync(string userName,string password)
         {
             UserLogin Login = new UserLogin();
