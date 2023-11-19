@@ -2,14 +2,9 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sys="clr-namespace:System;assembly=netstandard"
-             xmlns:viewModels="clr-namespace:hf4_app.ViewModel"
              xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="hf4_app.Views.QrScannerView"
              Title="QR Scanner">
-    <ContentPage.BindingContext>
-        <viewModels:QrScannerViewModel />
-    </ContentPage.BindingContext>
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
@@ -39,7 +34,7 @@
                     Cameras="{Binding Cameras}"
                     Camera="{Binding Camera}"
                     AutoStartPreview="{Binding AutoStartPreview}"
-                    MirroredImage="True"
+                    MirroredImage="False"
                     BarCodeDetectionEnabled="True"
                     NumCamerasDetected="{Binding NumCameras, Mode=OneWayToSource}" />
             </Frame>
@@ -78,7 +73,7 @@
                 Grid.Row="3"
                 Text="{Binding BarcodeText}"
                 Command="{Binding PackageDetailCommand}"
-                CommandParameter="{Binding BarcodeText}"
+                CommandParameter="1"
                 MaximumWidthRequest="350" />
         </Grid>
     </ScrollView>

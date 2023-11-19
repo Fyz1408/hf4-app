@@ -1,37 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace hf4_app.Models
+﻿namespace hf4_app.Models
 {
-
-    class Warehouse
-    {
-        private int id;
-        private string name;
-        private string location;
-
-        public int Id { get { return id; } set { id = value; } }
-        public string Name { get { return name; } set { name = value; } }
-        public string Location { get { return location; } set { location = value; } }
-    }
-    class Customer
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
-    }
-    class PackageEvents
-    {
-        public int Id { get; set; }
-        public int PackageId { get; set; }
-        public int WarehouseId { get; set; }
-        public DateTime TimeStamp { get; set; }
-    }
-    class Package
+    public class Package
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
@@ -40,9 +9,51 @@ namespace hf4_app.Models
         public bool IsDelivered { get; set; }
         public bool IsFinished { get; set; }
         public DateTime CreatedAt { get; set; }
-
     }
-    class UserLogin
+    
+    
+    public class Warehouse
+    {    
+        public Warehouse(int id, string name, string location)
+        {
+            Id = id;
+            Name = name;
+            Location = location;
+        }
+        private int id;
+        private string name;
+        private string location;
+
+        public int Id { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string Location { get { return location; } set { location = value; } }
+    }
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+    }
+    public class PackageEvents
+    {
+        public PackageEvents() { }
+
+        public PackageEvents(int id, int packageId, DateTime timeStamp, int warehouseId)
+        {
+            Id = id;
+            PackageId = packageId;
+            TimeStamp = timeStamp;
+            WarehouseId = warehouseId;
+        }
+
+        public int Id { get; set; }
+        public int PackageId { get; set; }
+        public int WarehouseId { get; set; }
+        public DateTime TimeStamp { get; set; }
+    }
+
+    public class UserLogin
     {
         public string UserName {  get; set; }
         public string Password { get; set; }

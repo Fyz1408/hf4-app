@@ -57,6 +57,7 @@ namespace hf4_app.service
         public void logout()
         {
             token = null;
+            SecureStorage.Default.Remove("token");
         }
 
         public async Task<bool> loginAsync(string userName,string password)
@@ -68,6 +69,7 @@ namespace hf4_app.service
             if (!string.IsNullOrEmpty(svare))
             {
                 token = svare;
+                await SecureStorage.Default.SetAsync("token", svare);
                 return true;
             }
             return false;
@@ -75,7 +77,10 @@ namespace hf4_app.service
 
         public async Task<bool> postAsyncWarehouse(Warehouse data)
         {
-            string svare = await postAsync(string.Format("/api/warehouse/?token={0}",token), data);
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            
+            string svare = await postAsync(string.Format("/api/warehouse/?token={0}",storedToken), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -84,14 +89,19 @@ namespace hf4_app.service
         }
         public async Task<Warehouse> getAsyncWarehouse(int id)
         {
-            string json = await getAsync(string.Format("/api/warehouse/?token={0}&id={1}",token,id.ToString()));
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+            
+            string json = await getAsync(string.Format("/api/warehouse/?token={0}&id={1}",storedToken,id.ToString()));
             return JsonSerializer.Deserialize<Warehouse>(json);
         }
 
 
         public async Task<bool> postAsyncCustomer(Customer data)
         {
-            string svare = await postAsync(string.Format("/api/customer?token={0}",token), data);
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+           
+            string svare = await postAsync(string.Format("/api/customer?token={0}",storedToken), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -100,13 +110,18 @@ namespace hf4_app.service
         }
         public async Task<Customer> getAsyncCustomer(int id)
         {
-            string json = await getAsync(string.Format("/api/customer/?token={0}&id={1}", token, id.ToString()));
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            
+            string json = await getAsync(string.Format("/api/customer/?token={0}&id={1}", storedToken, id.ToString()));
             return JsonSerializer.Deserialize<Customer>(json);
         }
 
         public async Task<bool> postAsyncPackageEvent(PackageEvents data)
         {
-            string svare = await postAsync(string.Format("/api/packageevent/?token={0}",token), data);
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            string svare = await postAsync(string.Format("/api/packageevent/?token={0}",storedToken), data);
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
@@ -115,34 +130,48 @@ namespace hf4_app.service
         }
         public async Task<PackageEvents> getAsyncPackageEvent(int id)
         {
-            string json = await getAsync(string.Format("/api/packageevent/?token={0}&id={1}", token, id.ToString()));
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            string json = await getAsync(string.Format("/api/packageevent/?token={0}&id={1}", storedToken, id.ToString()));
             return JsonSerializer.Deserialize<PackageEvents>(json);
         }
 
 
         public async Task<bool> postAsyncPackage(Package data)
         {
-            string svare = await postAsync(string.Format("/api/package/?token={0}",token), data);
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            
+            string svare = await postAsync(string.Format("/api/package/?token={0}", storedToken ), data);
+            
             if (!string.IsNullOrEmpty(svare))
             {
                 return true;
             }
             return false;
         }
+        
+        public async Task<PackageEvents[]> getListAsyncPackage(int id)
+        {
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            string json = await getAsync(string.Format("/api/allEvents/?token={0}&id={1}", storedToken, id.ToString()));
+            return JsonSerializer.Deserialize<PackageEvents[]>(json);
+        }
         public async Task<Package> getAsyncPackage(int id)
         {
-            string json = await getAsync(string.Format("/api/package/?token={0}&id={1}", token, id.ToString()));
+            string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            string json = await getAsync(string.Format("/api/package/?token={0}&id={1}", storedToken, id.ToString()));
             return JsonSerializer.Deserialize<Package>(json);
         }
-
-        public async Task<Package[]> getListAsyncPackage(int id)
-        {
-            string json = await getAsync(string.Format("/api/allEvents/?token={0}&id={1}", token, id.ToString()));
-            return JsonSerializer.Deserialize<Package[]>(json);
-        }
+      
         public async Task<Warehouse[]> getListAsyncWarehouse()
         {
-            string json = await getAsync(string.Format("/api/allWarehouse/?token={0}", token));
+              string storedToken = await SecureStorage.Default.GetAsync("token");
+
+            string json = await getAsync(string.Format("/api/allWarehouse/?token={0}", storedToken));
+
             return JsonSerializer.Deserialize<Warehouse[]>(json);
         }
     }
