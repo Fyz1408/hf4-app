@@ -12,6 +12,8 @@ public partial class PackageViewModel : ObservableObject
 {
   private readonly webHandler api = new();
   
+  [ObservableProperty] private ObservableCollection<Warehouse> warehouses = new();
+  
   [ObservableProperty] 
   private ObservableCollection<PackageEvents> packageEvents = new();
 
@@ -25,26 +27,44 @@ public partial class PackageViewModel : ObservableObject
       SetProperty(ref packageDetails, value);
     }
   }
-  
+
   public PackageViewModel()
   {
-    Task.Run(async () => await loadPackageEvents(packageDetails.Id));
+    Task.Run(async () => await loadWarehouses());
   }
-
 
   [RelayCommand]
   private static async Task GoBack()
   {
     // Return to QR scanner page
     await Shell.Current.GoToAsync("..");
+  } 
+  
+  [RelayCommand]
+  private async Task updateWarehouse()
+  {
+    
+  }
+  
+  private async Task loadWarehouses()
+  {
+    Warehouses.Clear();
+    var apiData = await api.getListAsyncWarehouse();
+      
+    foreach (var warehouse in apiData)
+    {
+      Warehouses.Add(warehouse);
+    }
   }
   
   private async Task loadPackageEvents(int packageId)
   {
-    
-    //var apiData = await api.getAsyncPackageEvent(packageId);
-    //PackageEvents = new ObservableCollection<PackageEvents>(apiData);
-    
-    //PackageEvents.Add(new PackageEvents(1,packageId,DateTime.Today, 1));
+    PackageEvents.Clear();
+    var apiData = await api.getListAsyncPackage(packageId);
+      
+    foreach (var packageEvent in apiData)
+    {
+      PackageEvents.Add(packageEvent);
+    }
   }
 }

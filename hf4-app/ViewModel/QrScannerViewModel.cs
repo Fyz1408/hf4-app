@@ -22,9 +22,8 @@ public partial class QrScannerViewModel : ObservableObject
     public string BarcodeText { get; set; } = "Ingen QR kode scannet";
 
     [ObservableProperty] private string barcodeButtonColor = "#479fd1";
-    public bool AutoStartPreview { get; set; } = false;
-
-
+    public bool AutoStartPreview { get; set; }
+    
     private CameraInfo camera = null;
 
     public CameraInfo Camera
@@ -129,8 +128,6 @@ public partial class QrScannerViewModel : ObservableObject
         try
         {
             var packageId = GetPackageId(package);
-            
-            Debug.WriteLine(packageId);
 
             if (!string.IsNullOrEmpty(packageId))
             {
@@ -138,8 +135,6 @@ public partial class QrScannerViewModel : ObservableObject
                 
                 // Get package details 
                 Package packageDetails = await api.getAsyncPackage(packageIdInt);
-                
-                Debug.WriteLine(packageDetails);
                 
                 var navigationParameter = new Dictionary<string, object>
                 {
@@ -167,6 +162,7 @@ public partial class QrScannerViewModel : ObservableObject
 
     static string GetPackageId(string input)
     {
+        // The package should be formatted: <package>PACKAGE_ID<package>
         // Use a regular expression to extract the content inside the <package> tags
         Match match = Regex.Match(input, @"<package>(.*?)<package>");
         
