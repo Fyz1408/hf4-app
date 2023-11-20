@@ -128,7 +128,7 @@ public partial class QrScannerViewModel : ObservableObject
         try
         {
             // Get package id from the barcode text and tryParse it to get an int
-            if (Int32.TryParse(GetPackageId(barcodeText), out var id))
+            if (Int32.TryParse(barcodeText, out var id))
             {
                 // Get package details 
                 Package packageDetails = await api.getAsyncPackage(id);
